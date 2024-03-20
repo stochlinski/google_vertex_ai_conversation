@@ -1,0 +1,11 @@
+{
+  "domain": "google_vertex_ai_conversation",
+  "name": "Google Vertex AI Conversation",
+  "codeowners": ["@stochlinski"],
+  "config_flow": true,
+  "dependencies": ["conversation"],
+  "documentation": "https://github.com/stochlinski/google_vertex_ai_conversation",
+  "integration_type": "service",
+  "iot_class": "cloud_polling",
+  "requirements": ["google-cloud-aiplatform==1.44.0"]
+}
