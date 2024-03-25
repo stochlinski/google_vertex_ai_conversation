@@ -1,4 +1,4 @@
-"""Constants for the Google Generative AI Conversation integration."""
+"""Constants for the Google Vertex AI Conversation integration."""
 
 DOMAIN = "google_vertex_ai_conversation"
 CONF_PROMPT = "prompt"

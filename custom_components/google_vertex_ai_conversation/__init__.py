@@ -198,6 +198,7 @@ class GoogleVertexAIAgent(conversation.AbstractConversationAgent):
         messages[1] = {"role": "model", "parts": "Ok"}
 
         _LOGGER.debug("Input: '%s' with history: %s", user_input.text, messages)
+        _LOGGER.debug(type(messages));
 
         chat = model.start_chat(history=messages)
         try:
