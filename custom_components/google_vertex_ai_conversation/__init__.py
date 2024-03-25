@@ -12,7 +12,7 @@ from google.api_core.exceptions import ClientError
 import vertexai
 from google.auth import load_credentials_from_file
 from vertexai.preview.generative_models import GenerativeModel, ChatSession
-from vertexai.generative_models._generative_models import Content
+from vertexai.generative_models import Content, Part
 import voluptuous as vol
 
 from homeassistant.components import conversation
@@ -194,11 +194,10 @@ class GoogleVertexAIAgent(conversation.AbstractConversationAgent):
                 response=intent_response, conversation_id=conversation_id
             )
 
-        messages[0] = {"role": "user", "parts": prompt}
-        messages[1] = {"role": "model", "parts": "Ok"}
+        messages[0] = Content(role="user", parts=[Part.from_text(prompt)])
+        messages[1] = Content(role="model", parts=[Part.from_text("Ok")])
 
         _LOGGER.debug("Input: '%s' with history: %s", user_input.text, messages)
-        _LOGGER.debug(type(messages));
 
         chat = model.start_chat(history=messages)
         try:
