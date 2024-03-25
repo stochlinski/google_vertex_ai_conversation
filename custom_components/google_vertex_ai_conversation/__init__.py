@@ -217,7 +217,7 @@ class GoogleVertexAIAgent(conversation.AbstractConversationAgent):
                 response=intent_response, conversation_id=conversation_id
             )
 
-        _LOGGER.debug("Response: %s", chat_response.parts)
+        _LOGGER.debug("Response: %s", chat_response.text)
         self.history[conversation_id] = chat.history
 
         intent_response = intent.IntentResponse(language=user_input.language)
