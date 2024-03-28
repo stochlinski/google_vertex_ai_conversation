@@ -76,14 +76,7 @@ async def async_setup(hass: HomeAssistant, config: ConfigType) -> bool:
             mime_type, _ = mimetypes.guess_type(image_filename)
             if mime_type is None or not mime_type.startswith("image"):
                 raise HomeAssistantError(f"`{image_filename}` is not an image")
-            prompt_parts.append(
-                {
-                    "mime_type": mime_type,
-                    "data": await hass.async_add_executor_job(
-                        Path(image_filename).read_bytes
-                    ),
-                }
-            )
+            prompt_parts.append(Part.from_data(mime_type=mime_type, data=await hass.async_add_executor_job(Path(image_filename).read_bytes)))
 
         model_name = "gemini-1.0-pro-vision" if image_filenames else "gemini-1.0-pro"
         model = GenerativeModel(model_name=model_name)
