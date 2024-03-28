@@ -1,7 +1,8 @@
 # Google Vertex AI Conversation
 This is custom component of Home Assistant.
 
-Derived from [Google Generative AI Conversation]([[https://www.home-assistant.io/integrations/openai_conversation/](https://github.com/home-assistant/core/tree/dev/homeassistant/components/google_generative_ai_conversation)](https://github.com/home-assistant/core/tree/dev/homeassistant/components/google_generative_ai_conversation)).
+Derived from [Google Generative AI Conversation] [[https://www.home-assistant.io/integrations/google_generative_ai_conversation/](https://github.com/home-assistant/core/tree/dev/homeassistant/components/google_generative_ai_conversation)]
+
 
 This component use Google Vertex AI insted of Google Gemini which is not available in Europe for now.
 
