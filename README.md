@@ -1,4 +1,4 @@
-# Extended OpenAI Conversation
+# Google Vertex AI Conversation
 This is custom component of Home Assistant.
 
 Derived from [Google Generative AI Conversation]([[https://www.home-assistant.io/integrations/openai_conversation/](https://github.com/home-assistant/core/tree/dev/homeassistant/components/google_generative_ai_conversation)](https://github.com/home-assistant/core/tree/dev/homeassistant/components/google_generative_ai_conversation)).
