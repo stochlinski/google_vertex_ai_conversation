@@ -24,7 +24,7 @@ In order to monitor logs of API requests and responses, add following config to 
 ```yaml
 logger:
   logs:
-    custom_components.google_vertext_ai_conversation: info
+    custom_components.google_vertex_ai_conversation: info
 ```
 
 ## Support
