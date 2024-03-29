@@ -1,5 +1,5 @@
 {
   "name": "Google VertexAI Conversation",
   "homeassistant": "2024.2.5",
-  "render_readme": false
+  "render_readme": true
 }
