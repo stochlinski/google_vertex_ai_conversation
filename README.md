@@ -4,7 +4,7 @@ This is custom component of Home Assistant.
 Derived from [Google Generative AI Conversation] [[https://www.home-assistant.io/integrations/google_generative_ai_conversation/](https://github.com/home-assistant/core/tree/dev/homeassistant/components/google_generative_ai_conversation)]
 
 
-This component use Google Vertex AI insted of Google Gemini which is not available in Europe for now.
+This component use Google Vertex AI insted of Google Gemini API which is not available in Europe for now.
 
 ## Installation
 1. Install via registering as a custom repository of HACS or by copying `google_vertex_ai_conversation` folder into `<config directory>/custom_components`
