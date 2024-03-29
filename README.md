@@ -11,10 +11,12 @@ This component use Google Vertex AI insted of Google Gemini which is not availab
 2. Restart Home Assistant
 3. Go to Settings > Devices & Services.
 4. In the bottom right corner, select the Add Integration button.
-5. Follow the instructions on screen to complete the setup 
-6. Go to Settings > [Voice Assistants](https://my.home-assistant.io/redirect/voice_assistants/).
-7. Click to edit Assistant (named "Home Assistant" by default).
-8. Select "Google Vertext AI Conversation" from "Conversation agent" tab.
+5. Follow the instructions on screen to complete the setup
+   - Specify region (ex. us-central1)
+   - Specify path to API key file to use with Google Cloud Platform. Here you can find some information how to get it: [How to obtain API Key File](https://www.home-assistant.io/integrations/google_cloud#obtaining-an-api-key)
+7. Go to Settings > [Voice Assistants](https://my.home-assistant.io/redirect/voice_assistants/).
+8. Click to edit Assistant (named "Home Assistant" by default).
+9. Select "Google Vertext AI Conversation" from "Conversation agent" tab.
 
 ## Logging
 In order to monitor logs of API requests and responses, add following config to `configuration.yaml` file
