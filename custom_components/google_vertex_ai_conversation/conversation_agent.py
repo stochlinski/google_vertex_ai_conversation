@@ -62,7 +62,7 @@ class GoogleVertexAIAgent(conversation.AbstractConversationAgent):
             messages = self.history[conversation_id]
         else:
             conversation_id = ulid.ulid_now()
-            messages = [{}, {}]
+            messages = None
 
         exposed_entities = self.get_exposed_entities()
         try:
@@ -88,7 +88,7 @@ class GoogleVertexAIAgent(conversation.AbstractConversationAgent):
             },
             system_instruction=system_prompt
         )
-
+        _LOGGER.debug("System instructions: '%s'", system_prompt)
         _LOGGER.debug("Input: '%s' with history: %s", user_input.text, messages)
 
         chat = model.start_chat(history=messages)
