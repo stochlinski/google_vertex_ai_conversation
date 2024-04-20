@@ -73,7 +73,7 @@ async def validate_input(hass: HomeAssistant, data: dict[str, Any]) -> None:
     # await hass.async_add_executor_job(partial(genai.list_models))
 
 
-class ConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
+class VertexAIConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
     """Handle a config flow for Google Vertex AI Conversation."""
 
     VERSION = 1
@@ -113,10 +113,10 @@ class ConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
         config_entry: config_entries.ConfigEntry,
     ) -> config_entries.OptionsFlow:
         """Create the options flow."""
-        return OptionsFlow(config_entry)
+        return VertexAIOptionsFlow(config_entry)
 
 
-class OptionsFlow(config_entries.OptionsFlow):
+class VertexAIOptionsFlow(config_entries.OptionsFlow):
     """Google Vertex AI config flow options handler."""
 
     def __init__(self, config_entry: config_entries.ConfigEntry) -> None:
