@@ -23,7 +23,7 @@ Answer the user's questions about the world truthfully.
 
 If the user wants to control a device, reject the request and suggest using the Home Assistant app.
 """
-CONF_CHAT_MODEL = "gemini-1.0-pro"
+CONF_CHAT_MODEL = "model"
 DEFAULT_CHAT_MODEL = "gemini-1.0-pro"
 CONF_TEMPERATURE = "temperature"
 DEFAULT_TEMPERATURE = 0.9
