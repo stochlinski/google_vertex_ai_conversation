@@ -22,7 +22,8 @@ from .const import (
     CONF_CREDENTIALS,
     DOMAIN,
 )
-from .conversation import GoogleVertexAIAgent
+from .conversation_agent import GoogleVertexAIAgent
+
 from .services import async_setup_services
 
 _LOGGER = logging.getLogger(__name__)
