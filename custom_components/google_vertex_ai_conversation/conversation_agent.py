@@ -54,8 +54,11 @@ class GoogleVertexAIAgent(conversation.AbstractConversationAgent):
         self, user_input: conversation.ConversationInput
     ) -> conversation.ConversationResult:
         """Process a sentence."""
+        model_name = self.entry.options.get(CONF_CHAT_MODEL, DEFAULT_CHAT_MODEL)
+        _LOGGER.debug("Model: %s", model_name)
+
         model = GenerativeModel(
-            model_name=self.entry.options.get(CONF_CHAT_MODEL, DEFAULT_CHAT_MODEL),
+            model_name=model_name,
             generation_config={
                 "temperature": self.entry.options.get(
                     CONF_TEMPERATURE, DEFAULT_TEMPERATURE
@@ -67,7 +70,6 @@ class GoogleVertexAIAgent(conversation.AbstractConversationAgent):
                 ),
             },
         )
-        _LOGGER.debug("Model: %s", model)
         exposed_entities = self.get_exposed_entities()
 
         if user_input.conversation_id in self.history:
