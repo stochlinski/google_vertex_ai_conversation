@@ -2,26 +2,21 @@
 
 DOMAIN = "google_vertex_ai_conversation"
 CONF_PROMPT = "prompt"
-DEFAULT_PROMPT = """This smart home is controlled by Home Assistant.
+CONF_IMAGE_FILENAME = "image_filename"
+DEFAULT_PROMPT = """I want you to act as smart home manager of Home Assistant.
+I will provide information of smart home along with a question, you will truthfully make correction or answer using information provided in one sentence in everyday language.
 
-An overview of the areas and the devices in this smart home:
-{%- for area in areas() %}
-  {%- set area_info = namespace(printed=false) %}
-  {%- for device in area_devices(area) -%}
-    {%- if not device_attr(device, "disabled_by") and not device_attr(device, "entry_type") and device_attr(device, "name") %}
-      {%- if not area_info.printed %}
+Current Time: {{now()}}
 
-{{ area_name(area) }}:
-        {%- set area_info.printed = true %}
-      {%- endif %}
-- {{ device_attr(device, "name") }}{% if device_attr(device, "model") and (device_attr(device, "model") | string) not in (device_attr(device, "name") | string) %} ({{ device_attr(device, "model") }}){% endif %}
-    {%- endif %}
-  {%- endfor %}
-{%- endfor %}
+Available Devices:
+```csv
+entity_id,name,state,aliases
+{% for entity in exposed_entities -%}
+{{ entity.entity_id }},{{ entity.name }},{{ entity.state }},{{entity.aliases | join('/')}}
+{% endfor -%}
+```
 
-Answer the user's questions about the world truthfully.
-
-If the user wants to control a device, reject the request and suggest using the Home Assistant app.
+The current state of devices is provided in available devices.
 """
 CONF_CHAT_MODEL = "model"
 DEFAULT_CHAT_MODEL = "gemini-1.0-pro"
@@ -34,5 +29,5 @@ DEFAULT_TOP_K = 1
 CONF_MAX_TOKENS = "max_tokens"
 DEFAULT_MAX_TOKENS = 150
 CONF_CREDENTIALS = "credentials"
-DEFAULT_LOCATION = "us-central1"
 DEFAULT_CREDENTIALS = "/config/googlecloud.json"
+DEFAULT_LOCATION = "us-central1"
