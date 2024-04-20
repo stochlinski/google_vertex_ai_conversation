@@ -30,4 +30,4 @@ CONF_MAX_TOKENS = "max_tokens"
 DEFAULT_MAX_TOKENS = 150
 CONF_CREDENTIALS = "credentials"
 DEFAULT_CREDENTIALS = "/config/googlecloud.json"
-DEFAULT_LOCATION = "us-central1"
+DEFAULT_LOCATION = "europe-west3"

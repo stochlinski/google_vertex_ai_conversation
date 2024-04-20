@@ -57,21 +57,6 @@ class GoogleVertexAIAgent(conversation.AbstractConversationAgent):
         model_name = self.entry.options.get(CONF_CHAT_MODEL, DEFAULT_CHAT_MODEL)
         _LOGGER.debug("Model: %s", model_name)
 
-        model = GenerativeModel(
-            model_name=model_name,
-            generation_config={
-                "temperature": self.entry.options.get(
-                    CONF_TEMPERATURE, DEFAULT_TEMPERATURE
-                ),
-                "top_p": self.entry.options.get(CONF_TOP_P, DEFAULT_TOP_P),
-                "top_k": self.entry.options.get(CONF_TOP_K, DEFAULT_TOP_K),
-                "max_output_tokens": self.entry.options.get(
-                    CONF_MAX_TOKENS, DEFAULT_MAX_TOKENS
-                ),
-            },
-        )
-        exposed_entities = self.get_exposed_entities()
-
         if user_input.conversation_id in self.history:
             conversation_id = user_input.conversation_id
             messages = self.history[conversation_id]
@@ -79,6 +64,7 @@ class GoogleVertexAIAgent(conversation.AbstractConversationAgent):
             conversation_id = ulid.ulid_now()
             messages = [{}, {}]
 
+        exposed_entities = self.get_exposed_entities()
         try:
             system_prompt = self._async_generate_prompt(exposed_entities, user_input)
         except TemplateError as err:
@@ -92,8 +78,16 @@ class GoogleVertexAIAgent(conversation.AbstractConversationAgent):
                 response=intent_response, conversation_id=conversation_id
             )
 
-        messages[0] = Content(role="user", parts=[Part.from_text(system_prompt)])
-        messages[1] = Content(role="model", parts=[Part.from_text("Ok")])
+        model = GenerativeModel(
+            model_name=model_name,
+            generation_config={
+                "temperature": self.entry.options.get(CONF_TEMPERATURE, DEFAULT_TEMPERATURE),
+                "top_p": self.entry.options.get(CONF_TOP_P, DEFAULT_TOP_P),
+                "top_k": self.entry.options.get(CONF_TOP_K, DEFAULT_TOP_K),
+                "max_output_tokens": self.entry.options.get(CONF_MAX_TOKENS, DEFAULT_MAX_TOKENS),
+            },
+            system_instruction=system_prompt
+        )
 
         _LOGGER.debug("Input: '%s' with history: %s", user_input.text, messages)
 
